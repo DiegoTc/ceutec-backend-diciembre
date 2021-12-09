@@ -21,9 +21,7 @@ var router = express.Router();              // get an instance of the express Ro
 router.get('/', function(req, res) {
     const fecha = new Date();
     const mesActual = fecha.getMonth() + 1;
-    console.log(mesActual);
-    return mesActual;
-    //res.json({ message: mesActual });
+    res.json({ mesActual });
 });
 
 // more routes for our API will happen here
