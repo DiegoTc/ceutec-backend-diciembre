@@ -37,12 +37,23 @@ elcodigo.get('/', function(req,turu){
     console.log(`El numero de la semana de la fecha actual (${fechaactual}) es ${resultado}.`);
 })
 
+var dayweek = express.Router();
+dayweek.get('/', function(req,res){
+
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const today = new Date();
+    const DiaActual = days[today.getDay()];
+    res.json(DiaActual)
+
+})
+
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/mes', router);
 app.use('/numsemana',elcodigo);
+app.use('/day',dayweek);
 
 // START THE SERVER
 // =============================================================================
