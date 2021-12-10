@@ -25,11 +25,23 @@ router.get('/', function(req, res) {
     //res.json({ mesActual });
 });
 
+//Este fue Marcelo siuuuuu
+var elcodigo = express.Router();
+
+elcodigo.get('/', function(req,res){
+    fechaactual = new Date();
+    var primeroenero = new Date(fechaactual.getFullYear(), 0, 1);
+    var numdias = Math.floor((fechaactual - primeroenero) / (24 * 60 * 60 * 1000));
+    var resultado = Math.ceil((fechaactual.getDay() + 1 + numdias) / 7);
+    console.log(`El numero de la semana de la fecha actual (${fechaactual}) es ${resultado}.`);
+})
+
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/mes', router);
+app.use('/numsemana',elcodigo);
 
 // START THE SERVER
 // =============================================================================
