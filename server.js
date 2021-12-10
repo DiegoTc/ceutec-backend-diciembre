@@ -28,11 +28,12 @@ router.get('/', function(req, res) {
 //Este fue Marcelo siuuuuu
 var elcodigo = express.Router();
 
-elcodigo.get('/', function(req,res){
+elcodigo.get('/', function(req,turu){
     fechaactual = new Date();
     var primeroenero = new Date(fechaactual.getFullYear(), 0, 1);
     var numdias = Math.floor((fechaactual - primeroenero) / (24 * 60 * 60 * 1000));
     var resultado = Math.ceil((fechaactual.getDay() + 1 + numdias) / 7);
+    turu.json(resultado);
     console.log(`El numero de la semana de la fecha actual (${fechaactual}) es ${resultado}.`);
 })
 
