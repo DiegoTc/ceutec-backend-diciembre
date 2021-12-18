@@ -48,6 +48,7 @@ dayweek.get('/', function(req,res){
     const today = new Date();
     const DiaActual = days[today.getDay()];
     res.json(DiaActual)
+    //esta es mi tarea anibal
 
 })
 
