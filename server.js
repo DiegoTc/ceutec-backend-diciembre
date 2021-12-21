@@ -1,9 +1,9 @@
 // BASE SETUP
 // =============================================================================
 
- // call the packages we need
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
+// call the packages we need
+var express = require('express'); // call express
+var app = express(); // define our app using express
 var bodyParser = require('body-parser');
 
 // configure app to use bodyParser()
@@ -11,18 +11,18 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;        // set our port
+var port = process.env.PORT || 8080; // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
-var router = express.Router();              // get an instance of the express Router
+var router = express.Router(); // get an instance of the express Router
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
     const fecha = new Date();
     const mesActual = fecha.getMonth();
-    let mesEnvia =""; 
-    let meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    let mesEnvia = "";
+    let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     mesEnvia = meses[mesActual];
     console.log(mesEnvia);
     res.json(mesEnvia);
@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
 //Este fue Marcelo siuuuuu
 var elcodigo = express.Router();
 
-elcodigo.get('/', function(req,turu){
+elcodigo.get('/', function(req, turu) {
     fechaactual = new Date();
     var primeroenero = new Date(fechaactual.getFullYear(), 0, 1);
     var numdias = Math.floor((fechaactual - primeroenero) / (24 * 60 * 60 * 1000));
@@ -42,30 +42,44 @@ elcodigo.get('/', function(req,turu){
 })
 
 var dayweek = express.Router();
-dayweek.get('/', function(req,res){
+dayweek.get('/', function(req, res) {
 
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const today = new Date();
     const DiaActual = days[today.getDay()];
     res.json(DiaActual)
-    //esta es mi tarea anibal
+        //esta es mi tarea anibal
 
 })
 
 // more routes for our API will happen here
+var hora = express.Router();
+
+
+
+hora.get('/', function(req, res) {
+
+    var Xmas95 = new Date();
+    var hours = Xmas95.getHours();
+    res.json(hours)
+    console.log(hours); // 23
+
+})
+
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/mes', router);
 app.use("/mesNm", router);
-app.use('/numsemana',elcodigo);
-app.use('/day',dayweek);
+app.use('/numsemana', elcodigo);
+app.use('/day', dayweek);
+app.use('/hora', hora);
 
 // START THE SERVER
 // =============================================================================
 app.listen(port);
 console.log('Magic happens on port ' + port);
 
- 
+
 
 //CRISTIAM reportandose..
